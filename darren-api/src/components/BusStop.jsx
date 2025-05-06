@@ -9,7 +9,7 @@ function BusStop() {
   const [error, setError] = useState(null);
 
   const atApiUrl = `https://pp-api.at.govt.nz/gtfs/v3/stops/${stopId}`;
-  const apiKey = "765cb84dc9d648e3ba346acf852451fe";
+  const apiKey = import.meta.env.VITE_AT_SUBSCRIPTION_PRIMARY_KEY;
 
   const fetchStopInfo = async () => {
     setLoading(true);
