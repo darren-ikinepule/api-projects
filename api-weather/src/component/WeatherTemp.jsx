@@ -10,8 +10,8 @@
 import { useState, useEffect} from 'react'
 
 const URL = `http://api.weatherapi.com/v1
-/current.json?key=47a53ef1aeff4b29ba811204220210&
-q=London&aqi=no`;
+/current.json?key=47a53ef1aeff4b29ba811204220210&q=London&aqi=no`;
+
 export const WheatherTemp = () => {
 
     const [temp, setTemp] = useState(0)
