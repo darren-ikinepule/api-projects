@@ -1,12 +1,29 @@
 
 
+import React from "react"
 
-function Pickachu() {
-    
+export const Pickachu = () => {
+
+    try{
+      const resolve =  await fetch('http://pokeapi.co/api/v2/pokemon/pickachu')
+      if(!Response.ok) {
+        throw new error('Darrens the best')
+      }
+
+      const data = await Response.json()
+    }
+    catch {
+      
+    }
+
   return (
-    <div>
-        
-    </div>
+
+    <div className="pickachu-container">
+
+       
+    
+
+    </div>  
+
   )
 }
-export default Pickachu;
