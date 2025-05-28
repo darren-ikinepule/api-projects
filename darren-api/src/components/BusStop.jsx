@@ -8,34 +8,29 @@ function BusStop() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const atApiUrl = `https://pp-api.at.govt.nz/gtfs/v3/stops/${stopId}`;
-  const apiKey = import.meta.env.VITE_AT_SUBSCRIPTION_PRIMARY_KEY;
+  const atApiUrl = `https://pp-api.at.govt.nz/gtfs/v3/stops/${stopId}/stoptrips?filter[date]={filter[date]}&filter[start_hour]={filter[start_hour]}`;
+  const apiKey = import.meta.env.VITE_AT_SUBSCRIPTION_PRIMARY_KEY
 
   const fetchStopInfo = async () => {
     setLoading(true);
     setError(null); // Reset error state on new fetch
-
+  
+    console.log("API Key:", apiKey); // Add this line
+  
     try {
       const response = await fetch(atApiUrl, {
-        method: "GET",
+        method: "GET" ,
         headers: {
           "Ocp-Apim-Subscription-Key": apiKey,
         },
       });
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
-      const data = await response.json();
-
-      if (data.data) {
-        setStopInfo(data.data.attributes);
-        console.log(data.data.attributes);
-      } else {
-        setError(new Error("Stop information not found."));
-        setStopInfo(null);
-      }
+  
+      const data = await response.json(); // Line 19 is here
+      // ... rest of your code
     } catch (err) {
       setError(err);
       setStopInfo(null);
@@ -56,7 +51,7 @@ function BusStop() {
 
   const handleSearch = () => {
     setStopId(inputStopId);
-    setInputStopId(""); //to clear text in input
+    // setInputStopId(""); //to clear text in input
   };
 
   if (loading) {
